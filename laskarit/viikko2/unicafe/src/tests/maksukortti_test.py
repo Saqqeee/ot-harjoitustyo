@@ -35,3 +35,6 @@ class TestMaksukortti(unittest.TestCase):
         viesti = self.maksukortti.ota_rahaa(2000)
 
         self.assertEqual(viesti, False)
+
+    def test_tulostus_nayttaa_oikean_saldon(self):
+        self.assertEqual(str(self.maksukortti), "Kortilla on rahaa 10.00 euroa")

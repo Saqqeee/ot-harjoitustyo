@@ -39,8 +39,6 @@ class Grid:
         bounds = pygame.Rect(margin_left, margin_top, SQUARE_SIZE * 10, SQUARE_SIZE * 20)
         pygame.draw.rect(window, (255, 255, 255), bounds, 1)
 
-        print(self.grid)
-
         for x in range(10):
             for y in range(2, 22):
                 if self.grid[x][y] > 0:

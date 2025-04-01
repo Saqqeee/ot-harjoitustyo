@@ -1,6 +1,7 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-Tähän repositorioon tulee syntymään jonkinlainen **peli**,
-jonka luonne ja vaatimusmäärittely *täydennetään myöhemmin*.
+Tähän repositorioon tulee syntymään yksinkertainen **Tetris**-konsepti,
+joka, on alustavasti määritelty tarkemmin
+[dokumentaatiossa](docs/vaatimusmaarittely.md).
 
-Laskaritehtävät [löytyvät täältä](/laskarit).
+Laskaritehtävät [löytyvät täältä](laskarit).

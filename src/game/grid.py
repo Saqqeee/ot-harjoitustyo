@@ -1,6 +1,5 @@
 import pygame
 from .tetromino import Tetromino
-from .square import Square
 
 SQUARE_SIZE = 30
 MARGIN = 30

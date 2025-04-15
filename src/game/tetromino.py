@@ -1,6 +1,6 @@
-from .square import Square, Color
-from random import randint
 from enum import Enum
+from random import randint
+from .square import Square, Color
 
 
 class Shape(Enum):

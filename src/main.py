@@ -53,7 +53,7 @@ class Grid:
 def main():
     pygame.init()
 
-    window = pygame.display.set_mode((1600, 900))
+    window = pygame.display.set_mode((1600, 900), pygame.RESIZABLE)
 
     clock = pygame.time.Clock()
     counter = 0

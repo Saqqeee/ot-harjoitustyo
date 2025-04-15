@@ -10,3 +10,5 @@
 
 - Koodia refaktoroitu
 - Lisätty palikoille eri muotoja ja värejä
+- Lisätty mahdollisuus liikuttaa aktiivisena olevaa palikkaa/tetrominoa
+- Lisätty törmäysten tarkastus

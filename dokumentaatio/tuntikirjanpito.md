@@ -4,4 +4,5 @@
 |:-----:|:-----|:--------------------------------------------------------------|
 | 1.4.  | 3h   | pygamen opettelu, alustus sovelluslogiikalle ja piirtämiselle |
 | 1.4.  | 2h   | testien ja invoke-tehtävien kirjoittamista, readme            |
-|  yht  | 3h   |
+| 9.4.  | 1h   | pylintin käyttöönotto                                         |
+|  yht  | 6h   |

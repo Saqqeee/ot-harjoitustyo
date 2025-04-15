@@ -19,13 +19,7 @@ def main():
                 case pygame.QUIT:
                     running = False
                 case pygame.KEYDOWN:
-                    match event.key:
-                        case pygame.K_LEFT:
-                            grid.left()
-                        case pygame.K_RIGHT:
-                            grid.right()
-                        case pygame.K_DOWN:
-                            grid.down()
+                    grid.move(event.key)
 
         # Set a black background
         window.fill((0, 0, 0))

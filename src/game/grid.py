@@ -51,6 +51,10 @@ class Grid:
 
         self.active.move_down()
 
+    def drop(self):
+        while self.active:
+            self.down()
+
     def left(self):
         if not self.active:
             return
@@ -70,6 +74,17 @@ class Grid:
                 return
 
         self.active.move_right()
+
+    def move(self, key):
+        match key:
+            case pygame.K_LEFT | pygame.K_a:
+                self.left()
+            case pygame.K_RIGHT | pygame.K_d:
+                self.right()
+            case pygame.K_DOWN | pygame.K_s:
+                self.down()
+            case pygame.K_UP | pygame.K_w:
+                self.drop()
 
     def tick(self):
         if not self.active:

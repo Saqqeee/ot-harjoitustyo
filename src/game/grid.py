@@ -70,7 +70,7 @@ class Grid:
             return
 
         for square in self.active.squares:
-            if square.x >= X_MAX - 1 and self.grid[square.x + 1][square.y]:
+            if square.x >= X_MAX - 1 or self.grid[square.x + 1][square.y]:
                 return
 
         self.active.move_right()

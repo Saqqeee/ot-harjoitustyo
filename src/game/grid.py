@@ -38,8 +38,38 @@ class Grid:
         # Place a new piece on the queue
         self.next = Tetromino()
 
-    def down(self):  # TODO: Out of bounds and collision checking
+    def down(self):
+        if not self.active:
+            return
+
+        for square in self.active.squares:
+            if square.y >= Y_MAX - 1 or self.grid[square.x][square.y + 1]:
+                # If it's no longer possible to go down
+                self.squares += self.active.squares
+                self.active = None
+                return
+
         self.active.move_down()
+
+    def left(self):
+        if not self.active:
+            return
+
+        for square in self.active.squares:
+            if square.x <= 0 or self.grid[square.x - 1][square.y]:
+                return
+
+        self.active.move_left()
+
+    def right(self):
+        if not self.active:
+            return
+
+        for square in self.active.squares:
+            if square.x >= X_MAX - 1 and self.grid[square.x + 1][square.y]:
+                return
+
+        self.active.move_right()
 
     def tick(self):
         if not self.active:
@@ -47,6 +77,7 @@ class Grid:
 
         self.down()
 
+        # Update collision grid
         self.grid = [[False for _ in range(Y_MAX)] for _ in range(X_MAX)]
         for square in self.squares:
             self.grid[square.x][square.y] = True

@@ -15,8 +15,17 @@ def main():
 
     while running:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                running = False
+            match event.type:
+                case pygame.QUIT:
+                    running = False
+                case pygame.KEYDOWN:
+                    match event.key:
+                        case pygame.K_LEFT:
+                            grid.left()
+                        case pygame.K_RIGHT:
+                            grid.right()
+                        case pygame.K_DOWN:
+                            grid.down()
 
         # Set a black background
         window.fill((0, 0, 0))

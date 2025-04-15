@@ -24,13 +24,13 @@ class Square:
     @color.setter
     def color(self, color):
         match color:
-            case Color.RED.value:
+            case Color.RED:
                 self._color = (255, 0, 0)
-            case Color.GREEN.value:
+            case Color.GREEN:
                 self._color = (0, 255, 0)
-            case Color.BLUE.value:
+            case Color.BLUE:
                 self._color = (0, 0, 255)
-            case Color.YELLOW.value:
+            case Color.YELLOW:
                 self._color = (255, 255, 0)
             case _:
                 raise ValueError("Invalid color")

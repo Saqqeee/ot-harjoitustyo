@@ -1,5 +1,5 @@
 from enum import Enum
-from random import randint
+from random import choice
 from .square import Square, Color
 
 
@@ -88,26 +88,26 @@ class Tetromino:
     def __init__(self, color: Color = None, shape: Shape = None):
 
         # If color and shape are None, decide randomly
-        self.color = color or randint(1, len(Color))
-        self.shape = shape or randint(1, len(Shape))
+        self.color = color or choice(list(Color))
+        self.shape = shape or choice(list(Shape))
 
         self.squares = []
 
     def spawn(self, x, y):
         match self.shape:
-            case Shape.I.value:
+            case Shape.I:
                 self.squares = shape_i(x, y, self.color)
-            case Shape.O.value:
+            case Shape.O:
                 self.squares = shape_o(x, y, self.color)
-            case Shape.T.value:
+            case Shape.T:
                 self.squares = shape_t(x, y, self.color)
-            case Shape.J.value:
+            case Shape.J:
                 self.squares = shape_j(x, y, self.color)
-            case Shape.L.value:
+            case Shape.L:
                 self.squares = shape_l(x, y, self.color)
-            case Shape.S.value:
+            case Shape.S:
                 self.squares = shape_s(x, y, self.color)
-            case Shape.Z.value:
+            case Shape.Z:
                 self.squares = shape_z(x, y, self.color)
 
     def move_down(self):

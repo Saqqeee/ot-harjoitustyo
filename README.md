@@ -6,6 +6,7 @@ Tähän repositorioon syntyy yksinkertainen versio Tetris-videopelistä.
 - [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)
 - [Changelog](dokumentaatio/changelog.md)
 - [Työaikakirjanpito](dokumentaatio/tuntikirjanpito.md)
+- [Arkkitehtuuri](dokumentaatio/arkkitehtuuri.md)
 
 ### Suorittaminen
 Asenna pelin vaatimat riippuvuudet:

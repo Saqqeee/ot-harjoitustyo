@@ -6,4 +6,6 @@
 | 1.4.  | 2h   | testien ja invoke-tehtävien kirjoittamista, readme            |
 | 9.4.  | 1h   | pylintin käyttöönotto                                         |
 | 15.4. | 3h   | pelikoodin refaktorointi ja ominaisuuksien lisäys             |
-|  yht  | 9h   |
+| 15.4. | 1h   | testien lisääminen                                            |
+| 15.4. | 1h   | arkkitehtuurikaavioiden luonti                                |
+|  yht  | 11h  |

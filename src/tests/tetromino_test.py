@@ -1,10 +1,10 @@
 import unittest
-from game.tetromino import Tetromino, Shape, Color, Square
+from game.tetromino import Tetromino, Shape
 
 
 class TestTetromino(unittest.TestCase):
     def setUp(self):
-        self.tetromino = Tetromino(Color.RED, Shape.O)
+        self.tetromino = Tetromino(Shape.O)
         self.tetromino.spawn(0, 0)
 
     def test_correct_shape_is_formed(self):
@@ -16,7 +16,7 @@ class TestTetromino(unittest.TestCase):
 
     def test_squares_share_parent_color(self):
         for square in self.tetromino.squares:
-            self.assertEqual(square.color, (255, 0, 0))
+            self.assertEqual(square.color, (255, 255, 0))
 
     def test_moving_left_works(self):
         coords = [(-1, 0), (-1, 1), (0, 1), (0, 0)]

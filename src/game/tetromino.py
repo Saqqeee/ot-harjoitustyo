@@ -42,28 +42,28 @@ def shape_o(x: int, y: int, color: Color):
 
 def shape_t(x: int, y: int, color: Color):
     return [
-        Square(x + 1, y, color),
         Square(x, y, color),
-        Square(x + 2, y, color),
-        Square(x + 1, y + 1, color),
+        Square(x - 1, y, color),
+        Square(x + 1, y, color),
+        Square(x, y + 1, color),
     ]
 
 
 def shape_j(x: int, y: int, color: Color):
     return [
-        Square(x + 1, y + 1, color),
         Square(x + 1, y, color),
-        Square(x + 1, y + 2, color),
-        Square(x, y + 2, color),
+        Square(x + 1, y - 1, color),
+        Square(x + 1, y + 1, color),
+        Square(x, y + 1, color),
     ]
 
 
 def shape_l(x: int, y: int, color: Color):
     return [
-        Square(x, y + 1, color),
         Square(x, y, color),
-        Square(x, y + 2, color),
-        Square(x + 1, y + 2, color),
+        Square(x, y - 1, color),
+        Square(x, y + 1, color),
+        Square(x + 1, y + 1, color),
     ]
 
 

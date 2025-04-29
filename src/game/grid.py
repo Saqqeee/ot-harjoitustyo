@@ -1,8 +1,6 @@
 import pygame
 from .tetromino import Tetromino
 
-SQUARE_SIZE = 30
-MARGIN = 30
 X_MAX = 10
 Y_MAX = 22
 
@@ -24,7 +22,7 @@ class Grid:
     def new_shape(self):
         # Base spawn coordinates
         x = 4
-        y = 0
+        y = 1
 
         # Make sure that a new tetromino is ready to go
         if not self.next:
@@ -139,26 +137,3 @@ class Grid:
                         square.move_down()
 
         self.refresh_grid()
-
-    def render(self, window):
-        bounds = pygame.Rect(MARGIN, MARGIN, SQUARE_SIZE * 10, SQUARE_SIZE * 20)
-        pygame.draw.rect(window, (255, 255, 255), bounds, 1)
-
-        for square in self.squares:
-            posx = SQUARE_SIZE * square.x + MARGIN
-            posy = SQUARE_SIZE * (square.y - 2) + MARGIN
-
-            drawable_square = pygame.Rect(posx, posy, SQUARE_SIZE, SQUARE_SIZE)
-
-            pygame.draw.rect(window, square.color, drawable_square, 0)
-
-        if self.active:
-            for square in self.active.squares:
-                if square.y < 2:
-                    continue
-                posx = SQUARE_SIZE * square.x + MARGIN
-                posy = SQUARE_SIZE * (square.y - 2) + MARGIN
-
-                drawable_square = pygame.Rect(posx, posy, SQUARE_SIZE, SQUARE_SIZE)
-
-                pygame.draw.rect(window, square.color, drawable_square, 0)

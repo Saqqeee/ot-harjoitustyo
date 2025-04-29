@@ -1,17 +1,17 @@
 import pygame
 from game import Grid
+from ui import Window
 
 
 def main():
     pygame.init()
-
-    window = pygame.display.set_mode((1600, 900), pygame.RESIZABLE)
 
     clock = pygame.time.Clock()
     counter = 0
     running = True
 
     grid = Grid()
+    window = Window(grid)
 
     while running:
         for event in pygame.event.get():
@@ -21,14 +21,11 @@ def main():
                 case pygame.KEYDOWN:
                     grid.move(event.key)
 
-        # Set a black background
-        window.fill((0, 0, 0))
-
         if counter >= 1000:
             counter -= 1000
             grid.tick()
 
-        grid.render(window)
+        window.render_frame()
 
         pygame.display.flip()
 

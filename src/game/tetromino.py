@@ -87,14 +87,26 @@ def shape_z(x: int, y: int, color: Color):
 
 
 class Tetromino:
-    def __init__(self, shape: Shape = None):
+    """
+    A class for representing a tetromino.
+    Used for controlling the active piece on the grid
+    and displaying the next piece due to spawn.
+    """
 
+    def __init__(self, shape: Shape = None):
+        """
+        Constructor for Tetromino.
+        """
         # If shape is None, decide randomly
         self.shape = shape or choice(list(Shape))
 
         self.squares = []
 
     def spawn(self, x, y):
+        """
+        Populates self.squares with squares that are given
+        coordinates and colors based on the shape.
+        """
         match self.shape:
             case Shape.I:
                 self.squares = shape_i(x, y, Color.LIGHTBLUE)
@@ -112,26 +124,41 @@ class Tetromino:
                 self.squares = shape_z(x, y, Color.RED)
 
     def move_down(self):
+        """
+        Moves all squares one step down.
+        """
         for square in self.squares:
             square.move_down()
 
     def move_left(self):
+        """
+        Moves all squares one step left.
+        """
         for square in self.squares:
             square.move_left()
 
     def move_right(self):
+        """
+        Moves all squares one step right.
+        """
         for square in self.squares:
             square.move_right()
 
     def rotate(self, clockwise=True):
-        # Don't even try to rotate O (square) shapes
+        """
+        Rotates the tetromino around a pivot point.
+        The pivot point is the first square in self.squares,
+        which is why it is important that the shapes are
+        correctly defined. Exits if the shape is an O (square).
+
+        Args:
+            clockwise (bool): Whether to rotate clockwise. Defaults to True.
+        """
         if self.shape == Shape.O:
             return
 
-        # Select the first square to pivot around
         pivot = self.squares[0]
 
-        # Move the other squares clockwise 90 degrees clockwise
         theta = pi / 2
         cosine = cos(theta)
         sine = sin(theta)

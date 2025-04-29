@@ -6,7 +6,14 @@ Y_MAX = 22
 
 
 class Grid:
+    """
+    The class that holds the game state and handles most of the logic.
+    """
+
     def __init__(self):
+        """
+        Constructor of Grid.
+        """
         # Only used for collision and row checking.
         # We make the underlying grid logic 2 squares taller than what we present to
         # account for new shapes that take up 3 squares vertically.
@@ -20,23 +27,29 @@ class Grid:
         self.next = Tetromino()
 
     def new_shape(self):
-        # Base spawn coordinates
+        """
+        Takes the tetromino from the queue
+        and moves it to a member that can be rendered
+        and controlled. Also refills the queue.
+        """
         x = 4
         y = 1
 
-        # Make sure that a new tetromino is ready to go
         if not self.next:
             self.next = Tetromino()
 
-        # Take the next tetromino from the queue and
-        # give it coordinates
         self.active = self.next
         self.active.spawn(x, y)
 
-        # Place a new piece on the queue
         self.next = Tetromino()
 
     def down(self):
+        """
+        Moves the active piece down one step.
+        If it's not possible to move down,
+        gives the individual squares to Grid
+        and sets active to None.
+        """
         if not self.active:
             return
 
@@ -50,10 +63,16 @@ class Grid:
         self.active.move_down()
 
     def drop(self):
+        """
+        "Fast/Hard down"; calls down() repeatedly as long as it can.
+        """
         while self.active:
             self.down()
 
     def left(self):
+        """
+        Moves the active piece left one step unless movement is blocked.
+        """
         if not self.active:
             return
 
@@ -64,6 +83,9 @@ class Grid:
         self.active.move_left()
 
     def right(self):
+        """
+        Moves the active piece right one step unless movement is blocked.
+        """
         if not self.active:
             return
 
@@ -74,6 +96,11 @@ class Grid:
         self.active.move_right()
 
     def rotate(self):
+        """
+        Attempts to rotate the active piece. If the rotation
+        causes a conflict with the grid boundaries or other squares,
+        reverts the rotation as if nothing happened.
+        """
         if not self.active:
             return
 
@@ -93,6 +120,12 @@ class Grid:
                 return
 
     def move(self, key):
+        """
+        Maps a keypress to an action.
+
+        Args:
+            key: A value from a pygame keypress event.
+        """
         match key:
             case pygame.K_LEFT | pygame.K_a:
                 self.left()
@@ -106,11 +139,21 @@ class Grid:
                 self.rotate()
 
     def refresh_grid(self):
+        """
+        Clears the grid used for collision/clearance checking
+        and rebuilds it from existing squares.
+        """
         self.grid = [[False for _ in range(X_MAX)] for _ in range(Y_MAX)]
         for square in self.squares:
             self.grid[square.y][square.x] = True
 
     def clear_row(self, i):
+        """
+        Rebuilds the list of squares omitting the row that was cleared.
+
+        Args:
+            i: The index of the row to clear
+        """
         squares_new = []
         for square in self.squares:
             if square.y != i:
@@ -118,6 +161,10 @@ class Grid:
         self.squares = squares_new
 
     def tick(self):
+        """
+        Happens once per second. Moves the active piece down and
+        checks whether rows have been cleared.
+        """
         if not self.active:
             self.new_shape()
 

@@ -7,7 +7,21 @@ MARGIN = 30
 
 
 class Window:
+    """
+    A class for handling rendering. It is essentially
+    in charge of everything that's drawn to the screen.
+
+    Attributes:
+        grid: The Grid object holding the game state.
+    """
+
     def __init__(self, grid: Grid):
+        """
+        Constructor of Window.
+
+        Args:
+            grid: The Grid object holding the game state.
+        """
         self.grid = grid
         self.grid_width = 10 * SQUARE_SIZE
         self.grid_height = 20 * SQUARE_SIZE
@@ -25,8 +39,10 @@ class Window:
         )
         pygame.display.set_caption("Tetris")
 
-    def render_frame(self):
     def render(self):
+        """
+        Renders the window and all its elements
+        """
         self.window.fill((0, 0, 0))
 
         self._render_grid()
@@ -35,8 +51,10 @@ class Window:
 
         pygame.display.flip()
 
-    def render_peek(self):
     def _render_peek(self):
+        """
+        Renders a box that shows the next tetromino in queue.
+        """
         offset_left = self.grid_width + 2 * MARGIN
 
         bounds = pygame.Rect(offset_left, MARGIN, self.peek_width, self.peek_height)
@@ -53,8 +71,10 @@ class Window:
 
                 pygame.draw.rect(self.window, square.color, drawable_square, 0)
 
-    def render_grid(self):
     def _render_controls(self):
+        """
+        Renders a bunch of text to show the player the controls.
+        """
         offset_left = self.grid_width + 2 * MARGIN
         offset_top = MARGIN * 2 + self.peek_height
 
@@ -74,6 +94,10 @@ class Window:
             offset_top += 30
 
     def _render_grid(self):
+        """
+        Renders the area in which the main Tetris game happens
+        and all the squares within it.
+        """
         bounds = pygame.Rect(MARGIN, MARGIN, self.grid_width, self.grid_height)
         pygame.draw.rect(self.window, (255, 255, 255), bounds, 1)
 

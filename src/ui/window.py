@@ -15,22 +15,28 @@ class Window:
         self.peek_width = 6 * SQUARE_SIZE
         self.peek_height = 5 * SQUARE_SIZE
 
+        self.font = pygame.font.SysFont("Arial", 25)
+
         window_width = self.grid_width + self.peek_width + 3 * MARGIN
         window_height = self.grid_height + 2 * MARGIN
 
         self.window = pygame.display.set_mode(
             (window_width, window_height), pygame.RESIZABLE
         )
+        pygame.display.set_caption("Tetris")
 
     def render_frame(self):
+    def render(self):
         self.window.fill((0, 0, 0))
 
-        self.render_grid()
-        self.render_peek()
+        self._render_grid()
+        self._render_peek()
+        self._render_controls()
 
         pygame.display.flip()
 
     def render_peek(self):
+    def _render_peek(self):
         offset_left = self.grid_width + 2 * MARGIN
 
         bounds = pygame.Rect(offset_left, MARGIN, self.peek_width, self.peek_height)
@@ -48,6 +54,26 @@ class Window:
                 pygame.draw.rect(self.window, square.color, drawable_square, 0)
 
     def render_grid(self):
+    def _render_controls(self):
+        offset_left = self.grid_width + 2 * MARGIN
+        offset_top = MARGIN * 2 + self.peek_height
+
+        controls = [
+            "\U00002190 / A - Left",
+            "\U00002192 / D - Right",
+            "\U00002193 / S - Down",
+            "\U00002191 / W - Rotate",
+            "Space - Drop",
+        ]
+
+        for line in controls:
+            text = self.font.render(line, True, (255, 255, 255))
+
+            self.window.blit(text, (offset_left, offset_top))
+
+            offset_top += 30
+
+    def _render_grid(self):
         bounds = pygame.Rect(MARGIN, MARGIN, self.grid_width, self.grid_height)
         pygame.draw.rect(self.window, (255, 255, 255), bounds, 1)
 

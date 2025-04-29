@@ -25,7 +25,7 @@ def main():
             counter -= 1000
             grid.tick()
 
-        window.render_frame()
+        window.render()
 
         pygame.display.flip()
 

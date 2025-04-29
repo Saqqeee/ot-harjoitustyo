@@ -1,6 +1,7 @@
 from enum import Enum
 from random import choice
 from .square import Square, Color
+from math import sin, cos, pi
 
 
 class Shape(Enum):
@@ -23,8 +24,8 @@ class Shape(Enum):
 
 def shape_i(x: int, y: int, color: Color):
     return [
-        Square(x - 1, y, color),
         Square(x, y, color),
+        Square(x - 1, y, color),
         Square(x + 1, y, color),
         Square(x + 2, y, color),
     ]
@@ -41,8 +42,8 @@ def shape_o(x: int, y: int, color: Color):
 
 def shape_t(x: int, y: int, color: Color):
     return [
-        Square(x, y, color),
         Square(x + 1, y, color),
+        Square(x, y, color),
         Square(x + 2, y, color),
         Square(x + 1, y + 1, color),
     ]
@@ -50,8 +51,8 @@ def shape_t(x: int, y: int, color: Color):
 
 def shape_j(x: int, y: int, color: Color):
     return [
-        Square(x + 1, y, color),
         Square(x + 1, y + 1, color),
+        Square(x + 1, y, color),
         Square(x + 1, y + 2, color),
         Square(x, y + 2, color),
     ]
@@ -59,8 +60,8 @@ def shape_j(x: int, y: int, color: Color):
 
 def shape_l(x: int, y: int, color: Color):
     return [
-        Square(x, y, color),
         Square(x, y + 1, color),
+        Square(x, y, color),
         Square(x, y + 2, color),
         Square(x + 1, y + 2, color),
     ]
@@ -85,10 +86,9 @@ def shape_z(x: int, y: int, color: Color):
 
 
 class Tetromino:
-    def __init__(self, color: Color = None, shape: Shape = None):
+    def __init__(self, shape: Shape = None):
 
-        # If color and shape are None, decide randomly
-        self.color = color or choice(list(Color))
+        # If shape is None, decide randomly
         self.shape = shape or choice(list(Shape))
 
         self.squares = []
@@ -121,3 +121,28 @@ class Tetromino:
     def move_right(self):
         for square in self.squares:
             square.move_right()
+
+    def rotate(self, clockwise=True):
+        # Don't even try to rotate O (square) shapes
+        if self.shape == Shape.O:
+            return
+
+        # Select the first square to pivot around
+        pivot = self.squares[0]
+
+        # Move the other squares clockwise 90 degrees clockwise
+        theta = pi / 2
+        cosine = cos(theta)
+        sine = sin(theta)
+        if clockwise:
+            sine = -sine
+
+        for square in self.squares[1:]:
+            x = square.x - pivot.x
+            y = square.y - pivot.y
+
+            x_new = cosine * x + -sine * y
+            y_new = sine * x + cosine * y
+
+            square.x = round(x_new + pivot.x)
+            square.y = round(y_new + pivot.y)

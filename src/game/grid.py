@@ -75,6 +75,25 @@ class Grid:
 
         self.active.move_right()
 
+    def rotate(self):
+        if not self.active:
+            return
+
+        self.active.rotate()
+
+        # If the rotated tetromino contains out of bounds squares
+        # or collides with anything on the grid, cancel the rotation
+        for square in self.active.squares:
+            if (
+                square.x < 0
+                or square.x >= X_MAX
+                or square.y < 0
+                or square.y >= Y_MAX
+                or self.grid[square.x][square.y]
+            ):
+                self.active.rotate(clockwise=False)
+                return
+
     def move(self, key):
         match key:
             case pygame.K_LEFT | pygame.K_a:
@@ -83,8 +102,10 @@ class Grid:
                 self.right()
             case pygame.K_DOWN | pygame.K_s:
                 self.down()
-            case pygame.K_UP | pygame.K_w:
+            case pygame.K_SPACE:
                 self.drop()
+            case pygame.K_UP | pygame.K_w:
+                self.rotate()
 
     def tick(self):
         if not self.active:

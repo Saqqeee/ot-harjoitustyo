@@ -1,7 +1,8 @@
 from enum import Enum
 from random import choice
-from .square import Square, Color
 from math import sin, cos, pi
+
+from .square import Square, Color
 
 
 class Shape(Enum):

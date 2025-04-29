@@ -6,6 +6,9 @@ class Color(Enum):
     GREEN = 2
     BLUE = 3
     YELLOW = 4
+    LIGHTBLUE = 5
+    PINK = 6
+    ORANGE = 7
 
 
 class Square:
@@ -32,6 +35,12 @@ class Square:
                 self._color = (0, 0, 255)
             case Color.YELLOW:
                 self._color = (255, 255, 0)
+            case Color.LIGHTBLUE:
+                self._color = (0, 255, 255)
+            case Color.PINK:
+                self._color = (255, 0, 255)
+            case Color.ORANGE:
+                self._color = (255, 127, 0)
             case _:
                 raise ValueError("Invalid color")
 

@@ -96,19 +96,19 @@ class Tetromino:
     def spawn(self, x, y):
         match self.shape:
             case Shape.I:
-                self.squares = shape_i(x, y, self.color)
+                self.squares = shape_i(x, y, Color.LIGHTBLUE)
             case Shape.O:
-                self.squares = shape_o(x, y, self.color)
+                self.squares = shape_o(x, y, Color.YELLOW)
             case Shape.T:
-                self.squares = shape_t(x, y, self.color)
+                self.squares = shape_t(x, y, Color.PINK)
             case Shape.J:
-                self.squares = shape_j(x, y, self.color)
+                self.squares = shape_j(x, y, Color.BLUE)
             case Shape.L:
-                self.squares = shape_l(x, y, self.color)
+                self.squares = shape_l(x, y, Color.ORANGE)
             case Shape.S:
-                self.squares = shape_s(x, y, self.color)
+                self.squares = shape_s(x, y, Color.GREEN)
             case Shape.Z:
-                self.squares = shape_z(x, y, self.color)
+                self.squares = shape_z(x, y, Color.RED)
 
     def move_down(self):
         for square in self.squares:

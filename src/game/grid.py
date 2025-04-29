@@ -13,7 +13,7 @@ class Grid:
         # We make the underlying grid logic 2 squares taller than what we present to
         # account for new shapes that take up 3 squares vertically.
         # False means an empty square, True means occupied.
-        self.grid = [[False for _ in range(Y_MAX)] for _ in range(X_MAX)]
+        self.grid = [[False for _ in range(X_MAX)] for _ in range(Y_MAX)]
 
         # Holds the squares that are present in the grid.
         self.squares = []
@@ -43,7 +43,7 @@ class Grid:
             return
 
         for square in self.active.squares:
-            if square.y >= Y_MAX - 1 or self.grid[square.x][square.y + 1]:
+            if square.y >= Y_MAX - 1 or self.grid[square.y + 1][square.x]:
                 # If it's no longer possible to go down
                 self.squares += self.active.squares
                 self.active = None
@@ -60,7 +60,7 @@ class Grid:
             return
 
         for square in self.active.squares:
-            if square.x <= 0 or self.grid[square.x - 1][square.y]:
+            if square.x <= 0 or self.grid[square.y][square.x - 1]:
                 return
 
         self.active.move_left()
@@ -70,7 +70,7 @@ class Grid:
             return
 
         for square in self.active.squares:
-            if square.x >= X_MAX - 1 or self.grid[square.x + 1][square.y]:
+            if square.x >= X_MAX - 1 or self.grid[square.y][square.x + 1]:
                 return
 
         self.active.move_right()
@@ -89,7 +89,7 @@ class Grid:
                 or square.x >= X_MAX
                 or square.y < 0
                 or square.y >= Y_MAX
-                or self.grid[square.x][square.y]
+                or self.grid[square.y][square.x]
             ):
                 self.active.rotate(clockwise=False)
                 return
@@ -107,16 +107,38 @@ class Grid:
             case pygame.K_UP | pygame.K_w:
                 self.rotate()
 
+    def refresh_grid(self):
+        self.grid = [[False for _ in range(X_MAX)] for _ in range(Y_MAX)]
+        for square in self.squares:
+            self.grid[square.y][square.x] = True
+
+    def clear_row(self, i):
+        squares_new = []
+        for square in self.squares:
+            if square.y != i:
+                squares_new.append(square)
+        self.squares = squares_new
+
     def tick(self):
         if not self.active:
             self.new_shape()
 
         self.down()
+        self.refresh_grid()
 
-        # Update collision grid
-        self.grid = [[False for _ in range(Y_MAX)] for _ in range(X_MAX)]
-        for square in self.squares:
-            self.grid[square.x][square.y] = True
+        peak = Y_MAX
+        for i, row in enumerate(self.grid):
+            row_sum = sum(row)
+            if i < peak and row_sum > 0:
+                peak = i
+            if row_sum == X_MAX:
+                self.clear_row(i)
+            if i > peak and row_sum == 0:
+                for square in self.squares:
+                    if square.y < i:
+                        square.move_down()
+
+        self.refresh_grid()
 
     def render(self, window):
         bounds = pygame.Rect(MARGIN, MARGIN, SQUARE_SIZE * 10, SQUARE_SIZE * 20)

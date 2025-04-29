@@ -12,3 +12,13 @@
 - Lisätty palikoille eri muotoja ja värejä
 - Lisätty mahdollisuus liikuttaa aktiivisena olevaa palikkaa/tetrominoa
 - Lisätty törmäysten tarkastus
+
+## Viikko 6
+
+- Käyttöliittymäkoodi eriytetty pelilogiikasta
+- Muutettu ikkunan kokoa mukautumaan paremmin sisältöön
+- Liitetty palikan väri sen muotoon
+- Lisätty mahdollisuus kääntää palikkaa myötäpäivään
+- Lisätty ikkuna, josta näkee seuraavana vuorossa olevan palikan
+- Lisätty näppäimet/kontrollit näkyviin ikkunaan
+- Lisätty täysien rivien poisto/tyhjennys

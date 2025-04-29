@@ -8,4 +8,5 @@
 | 15.4. | 3h   | pelikoodin refaktorointi ja ominaisuuksien lisäys             |
 | 15.4. | 1h   | testien lisääminen                                            |
 | 15.4. | 1h   | arkkitehtuurikaavioiden luonti                                |
-|  yht  | 11h  |
+| 29.4. | 5h   | ominaisuuksien lisääminen, refaktorointi                      |
+|  yht  | 16h  |

@@ -9,4 +9,5 @@
 | 15.4. | 1h   | testien lisääminen                                            |
 | 15.4. | 1h   | arkkitehtuurikaavioiden luonti                                |
 | 29.4. | 5h   | ominaisuuksien lisääminen, refaktorointi                      |
-|  yht  | 16h  |
+| 29.4. | 1h   | arkkitehtuurin dokumentointi                                  |
+|  yht  | 17h  |

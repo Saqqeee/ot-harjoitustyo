@@ -19,12 +19,8 @@ poetry run invoke start
 ```
 
 ### Pelaaminen
-Tällä hetkellä pelistä löytyvät seuraavat toiminnot:
-
- - `A` / `←`: Vasen
- - `D` / `→`: Oikea
- - `S` / `↓`: Alas hitaasti ("soft drop")
- - `W` / `↑`: Alas nopeasti ("hard drop")
+Peli ei vielä toistaiseksi pääty, vaikka ruutu täyttyisi palikoista, eikä pisteitä tai aikaa seurata mitenkään.
+Nämä ominaisuudet ovat tulossa. Muuten ohjeet pelaamiseen, kuten näppäinkontrollit, löytyvät peli-ikkunasta.
 
 ### Muita komentorivitoimintoja
 Pelin testit voi suorittaa seuraavalla komennolla:

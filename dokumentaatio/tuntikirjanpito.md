@@ -12,4 +12,5 @@
 | 29.4. | 1h   | arkkitehtuurin dokumentointi                                  |
 | 11.5. | 1h   | pelin päättymisen implementointi                              |
 | 11.5. | 1h   | pelin pisteytys                                               |
-|  yht  | 19h  |
+| 11.5. | 1h   | testit ja dokumentaation päivitys                             |
+|  yht  | 20h  |

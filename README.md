@@ -1,6 +1,6 @@
 # Ohjelmistotekniikka, harjoitustyö
 
-Tähän repositorioon syntyy yksinkertainen versio Tetris-videopelistä. Viimeisin julkaisu löytyy [täältä](https://github.com/Saqqeee/ot-harjoitustyo/releases/latest).
+Tähän repositorioon syntyy yksinkertainen versio Tetris-videopelistä. Viimeisin release löytyy [tämän linkin takaa](https://github.com/Saqqeee/ot-harjoitustyo/releases/latest).
 
 ## Dokumentaatio
 - [Vaatimusmäärittely](dokumentaatio/vaatimusmaarittely.md)

@@ -23,7 +23,7 @@ class Grid:
         # Holds the squares that are present in the grid.
         self.squares = []
 
-        self.active = None
+        self.active: Tetromino | None = None
         self.next = Tetromino()
 
         self.score = 0

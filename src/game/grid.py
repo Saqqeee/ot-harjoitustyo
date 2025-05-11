@@ -26,6 +26,8 @@ class Grid:
         self.active = None
         self.next = Tetromino()
 
+        self.game_over = False
+
     def new_shape(self):
         """
         Takes the tetromino from the queue
@@ -33,7 +35,7 @@ class Grid:
         and controlled. Also refills the queue.
         """
         x = 4
-        y = 1
+        y = 0
 
         if not self.next:
             self.next = Tetromino()
@@ -137,6 +139,9 @@ class Grid:
                 self.drop()
             case pygame.K_UP | pygame.K_w:
                 self.rotate()
+            case pygame.K_RETURN:
+                if self.game_over:
+                    self.__init__()
 
     def refresh_grid(self):
         """
@@ -160,20 +165,18 @@ class Grid:
                 squares_new.append(square)
         self.squares = squares_new
 
-    def tick(self):
+    def check_rows(self):
         """
-        Happens once per second. Moves the active piece down and
-        checks whether rows have been cleared.
+        Check the current grid row by row and perform actions as needed.
+        Clears rows that are full, moves other pieces down if rows were cleared before.
+        Also checks whether the game should end.
         """
-        if not self.active:
-            self.new_shape()
-
-        self.down()
-        self.refresh_grid()
-
         peak = Y_MAX
         for i, row in enumerate(self.grid):
             row_sum = sum(row)
+            if i <= 2 and row_sum > 0:
+                self.game_over = True
+                return
             if i < peak and row_sum > 0:
                 peak = i
             if row_sum == X_MAX:
@@ -183,4 +186,18 @@ class Grid:
                     if square.y < i:
                         square.move_down()
 
+    def tick(self):
+        """
+        Happens once per second. Moves the active piece down and
+        checks whether rows have been cleared.
+        """
+        if self.game_over:
+            return
+
+        if not self.active:
+            self.new_shape()
+
+        self.down()
+        self.refresh_grid()
+        self.check_rows()
         self.refresh_grid()

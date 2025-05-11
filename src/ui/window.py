@@ -29,8 +29,6 @@ class Window:
         self.peek_width = 6 * SQUARE_SIZE
         self.peek_height = 5 * SQUARE_SIZE
 
-        self.font = pygame.font.SysFont("Arial", 25)
-
         window_width = self.grid_width + self.peek_width + 3 * MARGIN
         window_height = self.grid_height + 2 * MARGIN
 
@@ -48,6 +46,8 @@ class Window:
         self._render_grid()
         self._render_peek()
         self._render_controls()
+        if self.grid.game_over:
+            self._render_game_over()
 
         pygame.display.flip()
 
@@ -86,8 +86,10 @@ class Window:
             "Space - Drop",
         ]
 
+        font = pygame.font.SysFont("Arial", 25)
+
         for line in controls:
-            text = self.font.render(line, True, (255, 255, 255))
+            text = font.render(line, True, (255, 255, 255))
 
             self.window.blit(text, (offset_left, offset_top))
 
@@ -119,3 +121,32 @@ class Window:
                 drawable_square = pygame.Rect(posx, posy, SQUARE_SIZE, SQUARE_SIZE)
 
                 pygame.draw.rect(self.window, square.color, drawable_square, 0)
+
+    def _render_game_over(self):
+        """
+        Renders the game over screen if needed.
+        """
+
+        game_over_font = pygame.font.SysFont("Arial", 50)
+
+        game_over_text = game_over_font.render(
+            "Game Over", True, (200, 10, 10), (0, 0, 0)
+        )
+
+        left = MARGIN + (self.grid_width - game_over_text.get_width()) / 2
+        top = MARGIN + (self.grid_height - game_over_text.get_height()) / 2
+
+        self.window.blit(
+            game_over_text,
+            (left, top),
+        )
+
+        retry_font = pygame.font.SysFont("Arial", 25)
+        retry_text = retry_font.render(
+            "Press Enter to try again", True, (200, 200, 200), (0, 0, 0)
+        )
+
+        self.window.blit(
+            retry_text,
+            (left, top + game_over_text.get_height()),
+        )

@@ -22,3 +22,9 @@
 - Lisätty ikkuna, josta näkee seuraavana vuorossa olevan palikan
 - Lisätty näppäimet/kontrollit näkyviin ikkunaan
 - Lisätty täysien rivien poisto/tyhjennys
+
+## Viikko 7
+
+- Peli päättyy ruudukon täyttyessä (joskin välillä hieman rumasti)
+- Päättynyt peli on mahdollista resetoida
+- Lisätty alkukantainen pisteytysjärjestelmä perustuen tyhjennettyjen rivien määrään

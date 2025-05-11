@@ -29,6 +29,9 @@ class Window:
         self.peek_width = 6 * SQUARE_SIZE
         self.peek_height = 5 * SQUARE_SIZE
 
+        self.score_width = self.peek_width
+        self.score_height = 0  # The method for rendering the score will update this
+
         window_width = self.grid_width + self.peek_width + 3 * MARGIN
         window_height = self.grid_height + 2 * MARGIN
 
@@ -45,6 +48,7 @@ class Window:
 
         self._render_grid()
         self._render_peek()
+        self._render_score()
         self._render_controls()
         if self.grid.game_over:
             self._render_game_over()
@@ -71,12 +75,31 @@ class Window:
 
                 pygame.draw.rect(self.window, square.color, drawable_square, 0)
 
+    def _render_score(self):
+        """
+        Renders the player's current score
+        """
+        offset_left = self.grid_width + 2 * MARGIN
+        offset_top = MARGIN * 2 + self.peek_height
+
+        font = pygame.font.SysFont("Arial", 30)
+        text = font.render(f"Score: {self.grid.score}", True, (255, 255, 255))
+
+        self.score_height = text.get_height()
+
+        bounds = pygame.Rect(
+            offset_left, offset_top, self.score_width, self.score_height
+        )
+        pygame.draw.rect(self.window, (255, 255, 255), bounds, 1)
+
+        self.window.blit(text, bounds)
+
     def _render_controls(self):
         """
         Renders a bunch of text to show the player the controls.
         """
         offset_left = self.grid_width + 2 * MARGIN
-        offset_top = MARGIN * 2 + self.peek_height
+        offset_top = MARGIN * 3 + self.peek_height + self.score_height
 
         controls = [
             "\U00002190 / A - Left",

@@ -10,4 +10,6 @@
 | 15.4. | 1h   | arkkitehtuurikaavioiden luonti                                |
 | 29.4. | 5h   | ominaisuuksien lisääminen, refaktorointi                      |
 | 29.4. | 1h   | arkkitehtuurin dokumentointi                                  |
-|  yht  | 17h  |
+| 11.5. | 1h   | pelin päättymisen implementointi                              |
+| 11.5. | 1h   | pelin pisteytys                                               |
+|  yht  | 19h  |

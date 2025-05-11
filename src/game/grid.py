@@ -26,6 +26,7 @@ class Grid:
         self.active = None
         self.next = Tetromino()
 
+        self.score = 0
         self.game_over = False
 
     def new_shape(self):
@@ -172,6 +173,8 @@ class Grid:
         Also checks whether the game should end.
         """
         peak = Y_MAX
+        rows_cleared = 0
+
         for i, row in enumerate(self.grid):
             row_sum = sum(row)
             if i <= 2 and row_sum > 0:
@@ -181,10 +184,22 @@ class Grid:
                 peak = i
             if row_sum == X_MAX:
                 self.clear_row(i)
+                rows_cleared += 1
             if i > peak and row_sum == 0:
                 for square in self.squares:
                     if square.y < i:
                         square.move_down()
+
+        # This scoring system is very crude and doesn't quite match the one
+        # most Tetris games use, but it's still better than nothing.
+        # Should work like this:
+        # - 1 line clear: 100 points
+        # - 2 line clears: 200 points
+        # - 3 line clears: 400 points
+        # - 4 line clears: 800 points
+        if rows_cleared > 0:
+            score = 100 * 2 ** (rows_cleared - 1)
+            self.score += score
 
     def tick(self):
         """

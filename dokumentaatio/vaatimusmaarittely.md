@@ -2,23 +2,23 @@
 
 ## Sovelluksen tarkoitus
 
-Sovelluksesta tulee kohtalaisen yksinkertaistettu versio
-Tetris-pelistä.
+Sovellus on simplistinen versio suositusta Tetris-pelistä. Peli
+tarjoaa Tetriksestä tutun peruskokemuksen.
 
-## Käyttäjät
-
-Vain yksi käyttäjärooli, *pelaaja*, on tarpeen.
-
-## Perustoiminnallisuus
+## Toiminnallisuus
 
  - 10 x 20 ruudukko, jonka ylälaidasta putoaa palikka (tetromino) kerrallaan
- - Palikkaa voi siirtää sivuttain, käännellä, tai kiihdyttää alaspäin
- - Rivin täyttäminen palikoilla tyhjentää rivin
- - Seuraava palikka näytetään etukäteen
+ - Palikkaa voi siirtää sivuttain, käännellä, tai kiihdyttää alaspäin (tai pudottaa suoraan)
+ - Rivin täyttäminen palikoilla tyhjentää rivin ja palkitsee pisteillä
+ - Seuraavana vuorossa oleva palikka näytetään etukäteen
+ - Peli päättyy, kun ruudukko täyttyy, eikä uutta tetrominoa voi enää syntyä
+   - Tässä vaiheessa pelaajalla on mahdollisuus aloittaa alusta
 
-## Jatkokehitys
+## Ideoita jatkokehitykseen
 
- - [Pisteytys](https://tetris.wiki/Scoring)
-    - Hiscore-tallennus ja -taulukointi
- - Keskeytysvalikko
+ - Pelin päätyttyä voisi olla mahdollista tallentaa pistemäärä taulukkoon
+   - Huippupistetaulukko, joka on saatavilla sovelluksen kautta
  - Pelitilanteen tallennusmahdollisuus ja lataaminen tiedostosta
+ - Keskeytysvalikko, josta pääsy esimerkiksi em. huippupisteisiin ja tallennettuihin peleihin
+ - Ulkoasun siistiminen ja kaunistaminen
+ - Pelaaja voi ehkä haluta muuttaa näppäintoimintoja itselleen mukavammiksi

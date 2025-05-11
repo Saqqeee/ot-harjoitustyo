@@ -23,8 +23,9 @@ Tällä hetkellä pelistä löytyvät seuraavat toiminnot:
 
  - `A` / `←`: Vasen
  - `D` / `→`: Oikea
+ - `W` / `↑`: Kääntö myötäpäivään
  - `S` / `↓`: Alas hitaasti ("soft drop")
- - `W` / `↑`: Alas nopeasti ("hard drop")
+ - Välilyönti: Alas nopeasti ("hard drop")
 
 ### Muita komentorivitoimintoja
 Pelin testit voi suorittaa seuraavalla komennolla:
